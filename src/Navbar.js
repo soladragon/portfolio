@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
-import { Routes, Route, useLocation, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const NavbarFixed = () => (
 
