@@ -32,7 +32,6 @@ const Github = () => {
             {data.length > 0 ? null : <Spinner animation="border" />}
 
             {data.map(item => {
-                console.log(item.fork)
                 if (item.fork === false) {
                     return <p key={item.id}>{item.name}</p>
                 }
