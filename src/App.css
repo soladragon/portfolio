@@ -228,3 +228,30 @@
 .corner-ribbon.blue {
   background: #39d;
 }
+
+.javascript{
+  color: #181818; 
+  background: #f1e05a !important;
+
+}
+
+.python{
+  color: #ffd343; 
+  background: #3776ab !important;
+}
+
+.html{
+  color: #ffffff;
+background: #e34c26 !important;
+}
+
+.c{
+  color: #fff;
+  background: #0078d4 !important;
+}
+
+.css{
+  color: #ebebeb;
+  background: #264de4 !important;
+  
+}

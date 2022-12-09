@@ -16,6 +16,7 @@ const PortfolioCard = ({ data, index }) => {
 
   const [open, setOpen] = useState(false);
   const [languages, setLanguages] = useState([]);
+  const [bannerTitle, setBannerTitle] = useState([]);
 
   // console.log(data.name)
 
@@ -38,9 +39,26 @@ const PortfolioCard = ({ data, index }) => {
   useEffect(() => {
 
       fetchData()
-    
+      
 
   }, []);
+
+  useEffect(() => {
+
+    let language = Object.keys(languages)[0];
+
+    if(language != null){
+      language = language.replace(/[^a-zA-Z0-9 ]/g, '');
+      console.log(language.toLowerCase())
+      setBannerTitle(language.toLowerCase());
+
+      
+      
+    }
+   
+  
+
+}, [languages]);
 
 
 
@@ -71,7 +89,7 @@ const PortfolioCard = ({ data, index }) => {
 
       <Card className="card shadow-sm">
        <div className="gal-container large-4 columns">
-            <div className="corner-ribbon top-right sticky blue shadow">{Object.keys(languages)[0]}</div>
+            <div className={`corner-ribbon top-right sticky blue shadow ${bannerTitle} ` } >{Object.keys(languages)[0]}</div>
             {/* <img src="https://via.placeholder.com/100x75" alt="Avatar" className="gal-image" /> */}
             <Card.Img variant="top" src="https://via.placeholder.com/250x200" className="gal-image"/>
             <div className="overlay">
