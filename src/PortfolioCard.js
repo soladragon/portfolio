@@ -12,7 +12,37 @@ import Fade from 'react-bootstrap/Fade';
 
 const PortfolioCard = ({ data, index }) => {
 
+  //https://api.github.com/repos/soladragon/portfolio/languages
+
   const [open, setOpen] = useState(false);
+  const [languages, setLanguages] = useState([]);
+
+  // console.log(data.name)
+
+  const fetchData = async () => {
+    try {
+
+      //https://api.github.com/repos/soladragon/portfolio/languages
+
+      //alternative https://api.github.com/search/repositories?q=user:soladragon&fork:false&direction=desc
+      const response = await fetch('https://api.github.com/repos/soladragon/' + data.name + '/languages');
+
+      const json = await response.json();
+      await setLanguages(json);
+      console.log(languages)
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+
+      fetchData()
+    
+
+  }, []);
+
+
 
   useEffect(() => {
 
@@ -25,52 +55,41 @@ const PortfolioCard = ({ data, index }) => {
   }, []);
 
 
+  useEffect(() => {
+
+
+  }, []);
+
+
   return (
 
-    // <Card className="card shadow-sm">
-    //   <Card.Img variant="top" src="https://via.placeholder.com/250x200" />
-    //   <Card.Body>
-    //     <Card.Title>{data.name}</Card.Title>
-    //     <Card.Text>
-    //       Some quick example text to build on the card title and make up the
-    //       bulk of the card's content.
-    //     </Card.Text>
-    //     <Button variant="outline-secondary" className="btn btn-sm">View</Button>
-    //     <Button variant="outline-secondary" className="btn btn-sm">Edit</Button>
-    //   </Card.Body>
-    // </Card>
+
 
     <>
 
       <Fade in={open} timeout={300 * (index + 1)} >
 
-
-        {/* <div className="card shadow-sm"> */}
-
-        {/* <img src={logo} className="App-logo bd-placeholder-img card-img-top" alt="logo" /> */}
-        <div className="box card shadow-sm">
-          <div className="container-banner">
-            <img src="https://via.placeholder.com/150" alt="Avatar" className="image" />
-            <div className="overlay-banner">
-              <div className="banner-txt">
-                Javascript
-              </div>
+      <Card className="card shadow-sm">
+       <div className="gal-container large-4 columns">
+            <div className="corner-ribbon top-right sticky blue shadow">{Object.keys(languages)[0]}</div>
+            {/* <img src="https://via.placeholder.com/100x75" alt="Avatar" className="gal-image" /> */}
+            <Card.Img variant="top" src="https://via.placeholder.com/250x200" className="gal-image"/>
+            <div className="overlay">
+              <div className="text">Hello World</div>
             </div>
           </div>
-
-          <div className="card-body">
-            <p className="card-text">{!data.description ? "No description entered" : data.description.substring(0, 30) + "..."}</p>
-            <div className="d-flex justify-content-between align-items-center">
-
-              <div className="btn-group">
-                <Button variant="outline-secondary" className="btn btn-sm">View</Button>
-                <Button variant="outline-secondary" className="btn btn-sm">Edit</Button>
-
-              </div>
-              <small className="text-muted">9 mins</small>
-            </div>
-          </div>
-        </div>
+  
+      <Card.Body>
+        <Card.Title>{data.name}</Card.Title>
+        <Card.Text>
+          Some quick example text to build on the card title and make up the
+          bulk of the card's content.
+        </Card.Text>
+        <Button variant="outline-secondary" className="btn btn-sm">View</Button>
+        <Button variant="outline-secondary" className="btn btn-sm">Edit</Button>
+      </Card.Body>
+    </Card>
+    
 
       </Fade>
     </>
