@@ -15,41 +15,13 @@ import Fade from 'react-bootstrap/Fade'
 import Button from 'react-bootstrap/Button'
 import Collapse from 'react-bootstrap/Collapse'
 import './Cover.css';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-
-
-
-const Cover = () => (
-  <Container fluid className="cover-container">
-    <Row>
-      <Col md={3}>
-        <h3 className="mb-0">Cover</h3>
-      </Col>
-      <Col md={9}>
-        <Navbar className="justify-content-end" expand="md">
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto">
-              <Nav.Link href="#" aria-current="page" active>
-                Home
-              </Nav.Link>
-              <Nav.Link href="#">Features</Nav.Link>
-              <Nav.Link href="#">Contact</Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar>
-      </Col>
-    </Row>
-  </Container>
-);
-
-
-
-
-
-
+import { Nav } from 'react-bootstrap';
+import { Navbar } from 'react-bootstrap';
+import Image from "react-bootstrap/Image";
+import { ListGroup } from 'react-bootstrap';
+import { ListGroupItem } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
+import { CardGroup } from 'react-bootstrap';
 
 
 
@@ -70,6 +42,9 @@ function App() {
 
   const fetchData = async () => {
     try {
+
+      //https://api.github.com/repos/soladragon/portfolio/languages
+
       //alternative https://api.github.com/search/repositories?q=user:soladragon&fork:false&direction=desc
       const response = await fetch('https://api.github.com/users/soladragon/repos?sort=updated&direction=desc&fork=false');
 
@@ -90,74 +65,119 @@ function App() {
   }, []);
 
   return (
-    <div >
+    <div className="App h-100 text-center text-bg-dark">
 
-{/* <Navbar bg="dark" variant="dark" expand="lg" className="justify-content-center">
-      <img src="logo.png" alt="logo" />
-      <Nav>
-        <Nav.Link style={{color: "white"}} href="#home">Home</Nav.Link>
-        <Nav.Link style={{color: "white"}} href="#about">About</Nav.Link>
-        <Nav.Link style={{color: "white"}} href="#contact">Contact</Nav.Link>
+          <Navbar bg="dark" expand="lg" className="mx-auto" variant="dark">
+    
+    <Navbar.Toggle aria-controls="basic-navbar-nav" className="mx-auto" />
+    <Navbar.Collapse id="basic-navbar-nav">
+      <Nav className="mx-auto" style={{marginTop: '20px'}}>
+        {/* <Nav.Link className="nav-link fw-bold active" to="/" >Home</Nav.Link>
+        <Nav.Link className="nav-link fw-bold " href="/github">Github</Nav.Link>
+        <Nav.Link className="nav-link fw-bold " href="#link">Contact</Nav.Link> */}
+        <Link className="nav-link fw-bold active" to="/">Home</Link>
+        <Link className="nav-link fw-bold " to="/github">Github</Link>
+        <Link className="nav-link fw-bold " to="/github">Contact Me</Link>
+
       </Nav>
-    </Navbar> */}
-
-    <Navbar bg="dark" variant="dark" expand="lg" className="justify-content-center">
-  <Navbar.Toggle aria-controls="basic-navbar-nav" />
-  <Navbar.Collapse id="basic-navbar-nav ">
-    <Nav>
-      <Nav.Link style={{color: "white"}} href="/github">Home</Nav.Link>
-      <Nav.Link style={{color: "white"}} href="#about">About</Nav.Link>
-      <Nav.Link style={{color: "white"}} href="#contact">Contact</Nav.Link>
-    </Nav>
-  </Navbar.Collapse>
-</Navbar>
-
+    </Navbar.Collapse>
+  </Navbar>
 
       <TransitionGroup>
-    <CSSTransition key={location.key} classNames="slide" timeout={300}>
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={
-          <div className="h-100 cover-container d-flex w-100 h-100 p-3 mx-auto flex-column App">
-            
-            <main className="px-3">
-              <h1>Cover your page.</h1>
-              <p className="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
-              <p className="lead">
-                <a href="#" className="btn btn-lg btn-secondary fw-bold border-white bg-white">Learn more</a>
-              </p>
-            </main>
-            <footer className="mt-auto text-white-50">
-              <p>Cover template for <a href="https://getbootstrap.com/" className="text-white">Bootstrap</a>, by <a href="https://twitter.com/mdo" className="text-white">@mdo</a>.</p>
-            </footer>
-          </div>
-        }/>
-        <Route path="github" element={
-          <Container>
-            <Row xs={1} sm={1} md={2} lg={2} xl={3}>
-              {data.map((item, index) => {
-                if (item.fork === false) {
-                  return <Col key={item.id} className="mb-5"><PortfolioCard index={index} data={item}></PortfolioCard></Col>
-                }
-              })}
-            </Row>
-          </Container>
-        } />
-      </Routes>
-    </CSSTransition>
-  </TransitionGroup>
-</div>
+        <CSSTransition key={location.key} classNames="slide" timeout={300}>
+
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={
+
+<main class="px-3">
+<h1>Cover your page.</h1>
+<p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
+<p class="lead">
+  <a href="#" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Learn more</a>
+</p>
+
+
+
+
+{/* <div style={{ display: "block", width: 700, padding: 30 }}>
+  <h4>React-Bootstrap Image Component</h4>
+  <Image
+    src="https://media.geeksforgeeks.org/wp-content/uploads/20210425000233/test-300x297.png"
+    rounded
+  />
+  <div style={{ position: "absolute", top: 10, right: 10 }}>
+    <img src="https://via.placeholder.com/150x50/000000/ffffff" alt="banner" />
+  </div>
+  <Image
+    src="https://media.geeksforgeeks.org/wp-content/uploads/20210425000233/test-300x297.png"
+    roundedCircle
+  />
+</div> */}
+
+
+</main>
+
+
+
+    
+
+              
 
 
 
 
 
+              // <div className="">
 
 
+              //   {/* <h1>Cover your page.</h1>
+              //   <p className="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
+              //   <p className="lead">
+              //     <a href="#" className="btn btn-lg btn-secondary fw-bold border-white bg-white">Learn more</a>
+              //   </p>
+              //   <img src={logo} className="App-logo" alt="logo" />
+              //   <p>
+              //     Edit <code>src/App.js</code> and save to reload.
+              //   </p>
+              //   <a
+              //     className="App-link"
+              //     href="https://reactjs.org"
+              //     target="_blank"
+              //     rel="noopener noreferrer"
+              //   >
+              //     Learn React
+              //   </a>
+              //   <Link to="/github">Home</Link> */}
+              // </div>
+            }
+            />
+            <Route path="github" element={
+              <Container>
 
 
+                <Row xs={1} sm={1} md={2} lg={2} xl={3}>
 
 
+                  {data.map((item, index) => {
 
+                    if (item.fork === false) {
+
+                      return <Col key={item.id} className="mb-5"><PortfolioCard index={index} data={item}></PortfolioCard></Col>
+
+
+                    }
+                  })}
+
+
+                </Row>
+
+              </Container>
+            } />
+          </Routes>
+
+        </CSSTransition>
+      </TransitionGroup>
+    </div >
   );
 }
 

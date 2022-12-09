@@ -20,9 +20,9 @@ const PortfolioCard = ({ data, index }) => {
       // code to be executed after 3 seconds
       setOpen(true);
     }, 100 * (index + 1));
-    
 
-    }, []);
+
+  }, []);
 
 
   return (
@@ -45,9 +45,18 @@ const PortfolioCard = ({ data, index }) => {
       <Fade in={open} timeout={300 * (index + 1)} >
 
 
-        <div className="card shadow-sm">
-          <svg className="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>{data.name}</title><rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">{data.name}</text></svg>
-          {/* <img src={logo} className="App-logo bd-placeholder-img card-img-top" alt="logo" /> */}
+        {/* <div className="card shadow-sm"> */}
+
+        {/* <img src={logo} className="App-logo bd-placeholder-img card-img-top" alt="logo" /> */}
+        <div className="box card shadow-sm">
+          <div className="container-banner">
+            <img src="https://via.placeholder.com/150" alt="Avatar" className="image" />
+            <div className="overlay-banner">
+              <div className="banner-txt">
+                Javascript
+              </div>
+            </div>
+          </div>
 
           <div className="card-body">
             <p className="card-text">{!data.description ? "No description entered" : data.description.substring(0, 30) + "..."}</p>
@@ -56,8 +65,7 @@ const PortfolioCard = ({ data, index }) => {
               <div className="btn-group">
                 <Button variant="outline-secondary" className="btn btn-sm">View</Button>
                 <Button variant="outline-secondary" className="btn btn-sm">Edit</Button>
-                {/* <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
-            <button type="button" className="btn btn-sm btn-outline-secondary">Edit</button> */}
+
               </div>
               <small className="text-muted">9 mins</small>
             </div>
