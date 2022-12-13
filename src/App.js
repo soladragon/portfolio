@@ -67,7 +67,7 @@ function App() {
   return (
     <div className="App h-100 text-center text-bg-dark">
 
-          <Navbar bg="dark" expand="lg" className="mx-auto" variant="dark">
+          <Navbar bg="dark" expand="lg" className="mx-auto" variant="dark" fixed="top" >
     
     <Navbar.Toggle aria-controls="basic-navbar-nav" className="mx-auto" />
     <Navbar.Collapse id="basic-navbar-nav">
@@ -88,10 +88,11 @@ function App() {
 
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={
-
-<main class="px-3">
-<h1>Cover your page.</h1>
-<p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
+<div className='vertical-center '>
+<main class="px-3 ">
+<h1>Hello, I am John Murphy</h1>
+<p class="lead">Experienced Software Developer with a proven track record of delivering high-quality software solutions.
+Skilled in various programming languages and technologies, with expertise in C#, ASP.NET, and React. Dedicated to staying current with industry best practices.</p>
 <p class="lead">
   <a href="#" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Learn more</a>
 </p>
@@ -116,6 +117,8 @@ function App() {
 
 
 </main>
+
+</div>
 
 
 
