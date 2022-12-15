@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
+import { Container } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
+import PortfolioCard from './PortfolioCard';
 
 const Github = () => {
 
@@ -27,21 +31,26 @@ const Github = () => {
     }, []);
 
     return (
-        <div>
+        <Container>
 
-            {data.length > 0 ? null : <Spinner animation="border" />}
+            <Row xs={1} sm={1} md={2} lg={2} xl={3}>
 
-            {data.map(item => {
-                if (item.fork === false) {
-                    return <p key={item.id}>{item.name}</p>
-                }
-            })}
+                {data.length > 0 ? null : <Spinner animation="border" />}
 
-            {/* {data.map(item => (
 
-                <p key={item.id}>{item.name}</p>
-            ))} */}
-        </div>
+                {data.map((item, index) => {
+
+                    if (item.fork === false) {
+
+                        return <Col key={item.id} className="mb-5"><PortfolioCard index={index} data={item}></PortfolioCard></Col>
+
+                    }
+                })}
+
+            </Row>
+
+        </Container>
+
     );
 };
 
